@@ -1,5 +1,5 @@
 
-te# Instant deployments for Google Cloud Run
+# Instant deployments for Google Cloud Run
 
 Deploy to Cloud Run without building your sources into a container.
 
