@@ -61,19 +61,14 @@ Your Node.js app is now serving at the URL of the Cloud Run service
 
 ### Updating your code and the app
 
-Re-run the following to update the code in Cloud Storage:
+These two commands will update the code in Cloud Storage and force the service to pick it up:
 
 ```
 gcloud storage cp -r app/* gs://BUCKET_NAME/
-```
-
-The code will be picekd on any new instance of your Cloud Run service.
-
-If you want to force existing instances of your service to pick up the new code, you can simply create a new revision by updating a environment variable:
-
-```
 gcloud run services update instant-app --region us-central1 --update-env-vars DATE=$(date +%Y-%m-%d_%H:%M:%S)
 ```
+
+_Without the second command, the code would be picked only when new instance of your Cloud Run service start. To force existing instances to pick up the new code, you simply create a new revision by updating a environment variable_
 
 
 ## Using other languages
