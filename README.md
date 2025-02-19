@@ -69,10 +69,10 @@ gcloud storage cp -r app/* gs://BUCKET_NAME/
 
 The code will be picekd on any new instance of your Cloud Run service.
 
-If you want to force existing instances of your service to pick up the new code, you can simply create a new revision with just a new env var:
+If you want to force existing instances of your service to pick up the new code, you can simply create a new revision by updating a environment variable:
 
 ```
-gcloud run services update instant-app --region us-central1 --update-env-vars DEPLOYMENT=$(date +%Y-%m-%d_%H:%M:%S)
+gcloud run services update instant-app --region us-central1 --update-env-vars DATE=$(date +%Y-%m-%d_%H:%M:%S)
 ```
 
 
