@@ -1,0 +1,27 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: instant-app
+  annotations:
+    run.googleapis.com/launch-stage: BETA
+  labels:
+    cloud.googleapis.com/location: us-central1
+spec:
+  template:
+    spec:
+      containers:
+      - image: us-central1-docker.pkg.dev/serverless-runtimes/google-22/runtimes/nodejs22
+        command:
+        - node
+        - index.js
+        volumeMounts:
+        - name: gcs-mount
+          mountPath: /workspace
+      volumes:
+      - name: gcs-mount
+        csi:
+          driver: gcsfuse.run.googleapis.com
+          readOnly: true
+          volumeAttributes:
+            bucketName: BUCKET_NAME # Replace with your bucket name
+
